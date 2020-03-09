@@ -1,19 +1,49 @@
-$(document).ready(function() {
-  $('img').each(function() {
-    if ($(this).parent().hasClass('fancybox')) return;
-    if ($(this).hasClass('nofancybox')) return;
-    var alt = this.alt;
-    if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-    $(this).wrap('<a href="' + ($(this).attr('data-src') == null ? this.src : $(this).attr('data-src')) + '" title="' + alt + '" class="fancybox"></a>');
-  });
-  $(this).find('.fancybox').each(function(){
-    $(this).attr('rel', 'article');
-  });
-});
-$(document).ready(function() {
-  $("a[href$='.jpg'],a[href$='.png'],a[href$='.gif'],a[href$='.webp']").attr('rel', 'gallery').fancybox({
-    helpers : {
-    title: { type: 'inside'}
+$(function () {
+  var imgList = $('.recent-post-item img').not('.no-fancybox')
+  if (imgList.length === 0) {
+    imgList = $('#post-content img').not('.no-fancybox')
+  }
+  for (var i = 0; i < imgList.length; i++) {
+    var $a = $(
+      '<a href="' +
+        imgList[i].src +
+        '" data-fancybox="group" data-caption="' +
+        imgList[i].alt +
+        '" class="fancybox"></a>'
+    )
+    var alt = imgList[i].alt
+    var $wrap = $(imgList[i]).wrap($a)
+    if (alt) {
+      $wrap.after('<div class="img-alt">' + alt + '</div>')
     }
-  });
-});
+  }
+
+  $().fancybox({
+    selector: '[data-fancybox]',
+    loop: true,
+    transitionEffect: 'slide',
+    buttons: ['share', 'slideShow', 'fullScreen', 'download', 'thumbs', 'close']
+  })
+
+  var galleryItem = $('.gallery-item')
+  var galleryList = []
+  galleryItem.each(function (idx, elem) {
+    galleryList.push({
+      src: $(elem).data('url'),
+      opts: {
+        caption: $(elem).data('title')
+      }
+    })
+  })
+  galleryItem.on('click', function () {
+    $.fancybox.open(
+      galleryList,
+      {
+        loop: true,
+        transitionEffect: 'slide'
+      },
+      galleryItem.index(this)
+    )
+    return false
+  })
+})
