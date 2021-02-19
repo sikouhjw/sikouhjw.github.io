@@ -104,12 +104,9 @@
 <li>
 <p>代码不放在代码环境里 / 只是用 <code>\ttfamily</code>/<code>\texttt</code> 假装放在了代码环境，例子：</p>
 <ul>
-<li>
-<pre class="highlight"><code class="tex">connect(captureBtn,<span class="tag">\<span class="name">&amp;</span></span>QPushButton::clicked, [=](){ cameraImageCapture-&gt;capture(qfile); } )
-<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">- 中西文混排出现不需要的空格</span><br><span class="line">  ```tex</span><br><span class="line">  \texttt&#123;test测试test&#125;</span><br></pre></td></tr></table></figure>
-
-
-</code></pre>
+<li>不放代码块还得手动将 <code>&amp;</code> 转义，排版效果还差<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">connect(captureBtn,<span class="tag">\<span class="name">&amp;</span></span>QPushButton::clicked, [=]()&#123; cameraImageCapture-&gt;capture(qfile); &#125; )</span><br></pre></td></tr></table></figure>
+</li>
+<li>中西文混排出现不需要的空格<figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="tag">\<span class="name">texttt</span><span class="string">&#123;test测试test&#125;</span></span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
