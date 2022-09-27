@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>run tex snippet</title>
+    <title>广东工业大学疫情防控期在校生出入校园申请审批表</title>
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js"></script>
     <style type="text/css" media="screen">
       .ace_editor {
-	  border: 1px solid lightgray;
-	  margin-bottom: 1px !important;
-	  width: 100%;
+    border: 1px solid lightgray;
+    margin-bottom: 1px !important;
+    width: 100%;
       }
       div.spacer {
-	  margin-top:16px;
+    margin-top:16px;
       }
       a { text-decoration:none; color:#5555FF}
-      a:hover	   {text-decoration:underline}
+      a:hover    {text-decoration:underline}
     </style>
     <script src="https://davidcarlisle.github.io/latexcgi/runlatex.js"></script>
     <script>
 
-      runlatex.editorlines=40;
+      runlatex.editorlines=142;
       runlatex.adddefaultpreamble=true;
       runlatex.adddefaultengine=true;
 
       runlatex.overleafURI=null;
       
       runlatex.texts ={
-	  "Open in Overleaf": "",
-	  "TeXLive.net":      "TeXLive.net", 
-	  "Delete Output":    "Delete Output",
-	  "Compiling PDF":    "Compiling PDF or HTML",
-	  "Added Code":       "",
-	  "End Added Code":   "",
-	  "Top Caption":      ""
+    "Open in Overleaf": "",
+    "TeXLive.net":      "TeXLive.net", 
+    "Delete Output":    "Delete Output",
+    "Compiling PDF":    "Compiling PDF or HTML",
+    "Added Code":       "",
+    "End Added Code":   "",
+    "Top Caption":      ""
       }
   function updateURL () {
       var t =  editors["pre0"].getValue();
@@ -46,7 +46,7 @@
       document.body.removeChild(nn);
       // update
       if(newl != document.location.search){
-	  document.location.search = "?" + encodeURI(t);
+    document.location.search = "?" + encodeURI(t);
       }
   }
 
