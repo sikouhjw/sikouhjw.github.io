@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>广东工业大学疫情防控期在校生出入校园申请审批表</title>
+    <title>run tex snippet</title>
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js"></script>
     <style type="text/css" media="screen">
       .ace_editor {
-    border: 1px solid lightgray;
-    margin-bottom: 1px !important;
-    width: 100%;
+	  border: 1px solid lightgray;
+	  margin-bottom: 1px !important;
+	  width: 100%;
       }
       div.spacer {
-    margin-top:16px;
+	  margin-top:16px;
       }
       a { text-decoration:none; color:#5555FF}
-      a:hover    {text-decoration:underline}
+      a:hover	   {text-decoration:underline}
     </style>
     <script src="https://davidcarlisle.github.io/latexcgi/runlatex.js"></script>
     <script>
 
-      runlatex.editorlines=142;
+      runlatex.editorlines=40;
       runlatex.adddefaultpreamble=true;
       runlatex.adddefaultengine=true;
-
       runlatex.overleafURI=null;
       
       runlatex.texts ={
-    "Open in Overleaf": "",
-    "TeXLive.net":      "TeXLive.net", 
-    "Delete Output":    "Delete Output",
-    "Compiling PDF":    "Compiling PDF or HTML",
-    "Added Code":       "",
-    "End Added Code":   "",
-    "Top Caption":      ""
+	  "Open in Overleaf": "",
+	  "TeXLive.net":      "TeXLive.net", 
+	  "Delete Output":    "清空",
+	  "Compiling PDF":    "Compiling PDF or HTML",
+	  "Added Code":       "",
+	  "End Added Code":   "",
+	  "Top Caption":      ""
       }
   function updateURL () {
       var t =  editors["pre0"].getValue();
@@ -46,7 +45,7 @@
       document.body.removeChild(nn);
       // update
       if(newl != document.location.search){
-    document.location.search = "?" + encodeURI(t);
+	  document.location.search = "?" + encodeURI(t);
       }
   }
 
@@ -64,161 +63,169 @@
     </script>
     <style>
       body {margin:auto; max-width: 70em;}
-      div.h {background-color: #F5F5FF;margin: .5em 0;}
+      div.h {background-color: #ffffff;margin: .5em 0;}
       pre {background-color: #EEE;margin:0;padding: .5em;}
+      button#lo-pre0 {
+          color: #5555FF;
+          background-color: #fff;
+          border-color: #be2397;
+          border-width: 0px;
+      }
     </style>
-    
+    <style>
+      .title {
+        font-size: 26px;
+        text-align: center;
+        font-weight: 600;
+      }
+      .info {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
 
-<hr>
-<div>
+<div hidden="hidden">
 <a href="https://texlive.net/">TeXLive.net Home</a>
 </div>
+<!-- <h1>GDUT申请审批表</h1> -->
+<div class="title">申请审批表</div>
 <hr>
-<div class="h">
-<pre id="pre0">% !TeX xelatex
-\documentclass[fontset=fandol]{ctexart}
-
-\setmainfont{XITS}
-\pagestyle{empty}
-\usepackage{tabularray}
-\usepackage[hmargin=2.54cm, vmargin=1.91cm, a4paper]{geometry}
-
-\ExplSyntaxOn
-\cs_generate_variant:Nn \keys_define:nn { nx }
-\clist_new:N \l__gdut_info_student_id
-\clist_new:N \l__gdut_info_name
-\clist_new:N \l__gdut_info_gender
-\clist_new:N \l__gdut_info_major_grade
-\clist_new:N \l__gdut_info_college
-\clist_new:N \l__gdut_info_supervisor
-\clist_new:N \l__gdut_info_dormitory
-\clist_new:N \l__gdut_info_phone
-\clist_new:N \l__gdut_info_period_of_time
-\clist_new:N \l__gdut_info_time
-\clist_new:N \l__gdut_info_why
-\clist_new:N \l__gdut_info_address
-\clist_new:N \l__gdut_info_trip_mode
-\clist_new:N \l__gdut_info_back_school
-\clist_new:N \l__gdut_info_informed_parents
-
-
-\keys_define:nn { gdut } {
-  student-id           .clist_set:N = \l__gdut_info_student_id,
-  name                 .clist_set:N = \l__gdut_info_name,
-  gender               .clist_set:N = \l__gdut_info_gender,
-  major-grade          .clist_set:N = \l__gdut_info_major_grade,
-  college              .clist_set:N = \l__gdut_info_college,
-  supervisor           .clist_set:N = \l__gdut_info_supervisor,
-  dormitory            .clist_set:N = \l__gdut_info_dormitory,
-  phone                .clist_set:N = \l__gdut_info_phone,
-  period-of-time       .clist_set:N = \l__gdut_info_period_of_time,
-  time                 .clist_set:N = \l__gdut_info_time,
-  why                  .clist_set:N = \l__gdut_info_why,
-  address              .clist_set:N = \l__gdut_info_address,
-  trip-mode            .clist_set:N = \l__gdut_info_trip_mode,
-  back-school          .clist_set:N = \l__gdut_info_back_school,
-  informed-parents     .clist_set:N = \l__gdut_info_informed_parents,
-}
-\keys_define:nn { gdut }
-  {
-    info  .meta:nn = { gdut / info  } {#1},
-  }
-\NewDocumentCommand \gdutsetup { m }
-  { \keys_set:nn { gdut } {#1} }
-\DeclareExpandableDocumentCommand \gdutdate { +m }
-{
-  \__gdut_date:www #1 \q_stop
-}
-\cs_new:Npn \__gdut_date:www #1/#2/#3 \q_stop {
-  \__gdut_date_aux:nnn {#1} {#2} {#3}
-}
-\cs_new:Npn \__gdut_date_aux:nnn {
-  \__gdut_date_aux:Nnnnn \int_to_arabic:n { \l__zhnum_arabic_sep_tl }
-}
-\cs_new:Npn \__gdut_date_aux:Nnnnn #1 {
-  \__gdut_date_aux:NNnnnn #1#1
-}
-\cs_new:Npn \__gdut_date_aux:NNnnnn #1#2#3#4#5#6 {
-  #1 {#4} #3 \zhnum_output:n { year } #3
-  #2 {#5} #3 \zhnum_output:n { month } #3
-  #2 {#6} #3 \zhnum_output:n { day }
-}
-\cs_generate_variant:Nn \__gdut_date_aux:nnn { V }
-\cs_new_protected:Npn \printgdut {
-  \begingroup\bfseries\sffamily\centering\zihao{3}
-    广东工业大学疫情防控期在校生出入校园申请审批表\par
-  \endgroup
-
-  \vspace*{\baselineskip}
-  
-  \centering
-  \begin{tblr}{
-    colspec     = { |[1.5pt] X[1,c,font=\bfseries] |[1.5pt] X[1,c] | X[3,c] | X[1,c] | X[3,c] |[1.5pt] },
-    rowspec     = { |[1.5pt] Q[m] | Q[m] | Q[m] | Q[m] | Q[m] | Q[m] |[1.5pt] Q[m]  Q[m] |[1.5pt] Q[m] Q[m] |[1.5pt] Q[m] Q[m] |[1.5pt] Q[m] Q[m] |[1.5pt] },
-    rows        = {25pt},
-    cell{1}{1}  = {r=6,c=1}{c,m},
-    cell{4}{3}  = {r=1,c=3}{c,m},
-    cell{7}{2}  = {r=1,c=4}{l,h},
-    cell{7}{1}  = {r=2,c=1}{c,m},
-    cell{8}{2}  = {r=1,c=4}{r,f},
-    cell{9}{1}  = {r=2,c=1}{c,m},
-    cell{9}{2}  = {r=1,c=4}{l,h},
-    cell{10}{2} = {r=1,c=4}{r,f},
-    cell{11}{1} = {r=2,c=1}{c,m},
-    cell{11}{2} = {r=1,c=4}{l,h},
-    cell{12}{2} = {r=1,c=4}{r,f},
-    cell{13}{1} = {r=2,c=1}{c,m},
-    cell{13}{2} = {r=1,c=4}{l,h},
-    cell{14}{2} = {r=1,c=4}{r,f},
-    }
-    {学\\ 生\\ 基\\ 本\\ 情\\ 况} & 学号      & \l__gdut_info_student_id  & 姓名      & \l__gdut_info_name \\
-                                  & 性别      & \l__gdut_info_gender      & 专业年级  & \l__gdut_info_major_grade \\
-                                  & 所属学院  & \l__gdut_info_college     & 导师      & \l__gdut_info_supervisor \\
-                                  & 出入时段  & \l__gdut_info_period_of_time \\
-                                  & 宿舍      & \l__gdut_info_dormitory   & 联系电话  & \l__gdut_info_phone \\
-                                  & 目的地    & \l__gdut_info_address     & 出行方式  & \l__gdut_info_trip_mode \\
-    {申\\ 请\\ 人\\ 申\\ 明}      & {本人承诺：以下信息真实无误，并按申报路线和时段内往返。\\
-                                    本人承诺做好疫情防控措施，单线往返\\
-                                    1. 外出详细原因：\l__gdut_info_why\\
-                                    2. 离校后是否返校：\l__gdut_info_back_school\\
-                                    3. 家长是否同意知情：\l__gdut_info_informed_parents
-                                    }\\
-                                  &  申请人（签名）：\makebox[13\ccwd][r]{\exp_args:No\gdutdate{\l__gdut_info_time}} \\
-    {导\\ 师\\ 意\\ 见\\{\small
-    \normalfont（研究生必填）}}   & （导师是否明确对学生监管责任，并同意学生外出学校）\\
-                                  & 签名：\hspace*{8\ccwd}年　月　日 \\
-    {　\\ 辅\\ 导\\ 员\\
-    意\\ 见\\ 　}                 & \\
-                                  & 签名：\hspace*{8\ccwd}年　月　日 \\
-    {　\\ 学\\ 院\\ 意\\ 见\\ 　} & （需明确学院是否同意该生离校）\\
-                                  & 负责人签名（盖章）：\hspace*{8\ccwd}年　月　日 \\
-  \end{tblr}
-}
-\ExplSyntaxOff
-
-\gdutsetup{
-  student-id        = {学号（2112100000）},
-  name              = {姓名（张三）},
-  gender            = {性别（男/女）},
-  major-grade       = {专业年级（21控制工程）},
-  college           = {学院名（自动化学院）},
-  supervisor        = {导师姓名（李四）},
-  dormitory         = {宿舍地址（东二000）},
-  phone             = {手机号},
-  period-of-time    = {外出时间（9月14日上午6点—9月16日下午6点）},
-  time              = {2021/9/14},
-  why               = {外出理由（回家探亲）},
-  address           = {目的地（广东省广州市番禺区广东工业大学）},
-  trip-mode         = {出行方式（高铁）},
-  back-school       = {是否返校（是）},
-  informed-parents  = {是否告知家长（是）},
-}
-
-\begin{document}
-  \printgdut
-\end{document}</pre>
+<div class="info">
+  <table align="center">
+    <tr>
+      <td>学号：</td>
+      <td><input type="text" id="stuId"/></td>
+    </tr>
+    <tr>
+      <td>姓名：</td>
+      <td><input type="text" id="stuName"/></td>
+    </tr>
+    <tr>
+      <td>性别：</td>
+      <td><input type="radio" name="sex" value="男" checked/>男<input type="radio" name="sex" value="女" />女</td>
+    </tr>
+    <tr>
+      <td>专业年级：</td>
+      <td> <input type="text" id="stuClass"/></td>
+    </tr>
+    <tr>
+      <td>学院名：</td>
+      <td><input type="text" id="stuSchool"/></td>
+    </tr>
+    <tr>
+      <td>导师姓名：</td>
+      <td><input type="text" id="stuTeacher"/></td>
+    </tr>
+    <tr>
+      <td>宿舍地址：</td>
+      <td><input type="text" id="stuRoom"/></td>
+    </tr>
+    <tr>
+      <td>电话号码：</td>
+      <td><input type="text" id="stuTel"/></td>
+    </tr>
+    <tr>
+      <td>外出时间：</td>
+      <td><input type="text" id="stuOut"/></td>
+    </tr>
+    <tr>
+      <td>申请时间：</td>
+      <td><input type="text" id="stuDate"/></td>
+    </tr>
+    <tr>
+      <td>外出理由：</td>
+      <td><input type="text" id="stuReason"/></td>
+    </tr>
+    <tr>
+      <td>目的地：</td>
+      <td><input type="text" id="stuDest"/></td>
+    </tr>
+    <tr>
+      <td>出行方式：</td>
+      <td><input type="text" id="stuWay"/></td>
+    </tr>
+    <tr>
+      <td>是否返校：</td>
+      <td><input type="radio" name="back" value="是" checked/>是<input type="radio" name="back" value="否" />否</td>
+    </tr>
+    <tr>
+      <td>是否告知家长：</td>
+      <td><input type="radio" name="par" value="是" checked/>是<input type="radio" name="par" value="否" />否</td>
+    </tr>
+  </table>
 </div>
-<hr>
+
+<script>
+  var stuId = document.getElementById('stuId');
+  var stuName = document.getElementById('stuName');
+  var stuClass = document.getElementById('stuClass');
+  var stuSchool = document.getElementById('stuSchool');
+  var stuTeacher = document.getElementById('stuTeacher');
+  var stuRoom = document.getElementById('stuRoom');
+  var stuTel = document.getElementById('stuTel');
+  var stuOut = document.getElementById('stuOut');
+  var stuDate = document.getElementById('stuDate');
+  var stuReason = document.getElementById('stuReason');
+  var stuDest = document.getElementById('stuDest');
+  var stuWay = document.getElementById('stuWay');
+  var stuBack;
+  var stuPar;
+  var stuGender;
+</script>
+<br />
+
+<div align="center">
+<button id="trigger" >提交</button>
+</div>
+
+<script>
+  var judge1 = document.getElementsByName('sex');
+  var judge2 = document.getElementsByName('back');
+  var judge3 = document.getElementsByName('par');
+  var all = '\\documentclass[fontset=fandol]{ctexart}\\usepackage{fontspec}\\setmainfont{XITS}\\pagestyle{empty}\\usepackage{tabularray}\\usepackage[hmargin=2.54cm, vmargin=1.91cm, a4paper]{geometry}\\ExplSyntaxOn\\cs_generate_variant:Nn \\keys_define:nn { nx }\\clist_new:N \\l__gdut_info_student_id\\clist_new:N \\l__gdut_info_name\\clist_new:N \\l__gdut_info_gender\\clist_new:N \\l__gdut_info_major_grade\\clist_new:N \\l__gdut_info_college\\clist_new:N \\l__gdut_info_supervisor\\clist_new:N \\l__gdut_info_dormitory\\clist_new:N \\l__gdut_info_phone\\clist_new:N \\l__gdut_info_period_of_time\\clist_new:N \\l__gdut_info_time\\clist_new:N \\l__gdut_info_why\\clist_new:N \\l__gdut_info_address\\clist_new:N \\l__gdut_info_trip_mode\\clist_new:N \\l__gdut_info_back_school\\clist_new:N \\l__gdut_info_informed_parents\\keys_define:nn { gdut } {  student-id           .clist_set:N = \\l__gdut_info_student_id,  name                 .clist_set:N = \\l__gdut_info_name,  gender               .clist_set:N = \\l__gdut_info_gender,  major-grade          .clist_set:N = \\l__gdut_info_major_grade,  college              .clist_set:N = \\l__gdut_info_college,  supervisor           .clist_set:N = \\l__gdut_info_supervisor,  dormitory            .clist_set:N = \\l__gdut_info_dormitory,  phone                .clist_set:N = \\l__gdut_info_phone,  period-of-time       .clist_set:N = \\l__gdut_info_period_of_time,  time                 .clist_set:N = \\l__gdut_info_time,  why                  .clist_set:N = \\l__gdut_info_why,  address              .clist_set:N = \\l__gdut_info_address,  trip-mode            .clist_set:N = \\l__gdut_info_trip_mode,  back-school          .clist_set:N = \\l__gdut_info_back_school,  informed-parents     .clist_set:N = \\l__gdut_info_informed_parents,}\\keys_define:nn { gdut }  {    info  .meta:nn = { gdut / info  } {#1},  }\\NewDocumentCommand \\gdutsetup { m }  { \\keys_set:nn { gdut } {#1} }\\cs_new_protected:Npn \\printgdut {  \\begingroup\\bfseries\\sffamily\\centering\\zihao{3}    广东工业大学疫情防控期在校生出入校园申请审批表\\par  \\endgroup  \\vspace*{\\baselineskip}    \\centering  \\begin{tblr}{    colspec     = { |[1.5pt] X[1,c,font=\\bfseries] |[1.5pt] X[1,c] | X[3,c] | X[1,c] | X[3,c] |[1.5pt] },    rowspec     = { |[1.5pt] Q[m] | Q[m] | Q[m] | Q[m] | Q[m] | Q[m] |[1.5pt] Q[m]  Q[m] |[1.5pt] Q[m] Q[m] |[1.5pt] Q[m] Q[m] |[1.5pt] Q[m] Q[m] |[1.5pt] },    rows        = {25pt},    cell{1}{1}  = {r=6,c=1}{c,m},    cell{4}{3}  = {r=1,c=3}{c,m},    cell{7}{2}  = {r=1,c=4}{l,h},    cell{7}{1}  = {r=2,c=1}{c,m},    cell{8}{2}  = {r=1,c=4}{r,f},    cell{9}{1}  = {r=2,c=1}{c,m},    cell{9}{2}  = {r=1,c=4}{l,h},    cell{10}{2} = {r=1,c=4}{r,f},    cell{11}{1} = {r=2,c=1}{c,m},    cell{11}{2} = {r=1,c=4}{l,h},    cell{12}{2} = {r=1,c=4}{r,f},    cell{13}{1} = {r=2,c=1}{c,m},    cell{13}{2} = {r=1,c=4}{l,h},    cell{14}{2} = {r=1,c=4}{r,f},    }    {学\\\\ 生\\\\ 基\\\\ 本\\\\ 情\\\\ 况} & 学号      & \\l__gdut_info_student_id  & 姓名      & \\l__gdut_info_name \\\\                                  & 性别      & \\l__gdut_info_gender      & 专业年级  & \\l__gdut_info_major_grade \\\\                                  & 所属学院  & \\l__gdut_info_college     & 导师      & \\l__gdut_info_supervisor \\\\                                  & 出入时段  & \\l__gdut_info_period_of_time \\\\                                  & 宿舍      & \\l__gdut_info_dormitory   & 联系电话  & \\l__gdut_info_phone \\\\                                  & 目的地    & \\l__gdut_info_address     & 出行方式  & \\l__gdut_info_trip_mode \\\\    {申\\\\ 请\\\\ 人\\\\ 申\\\\ 明}      & {本人承诺：以下信息真实无误，并按申报路线和时段内往返。\\\\                                    本人承诺做好疫情防控措施，单线往返\\\\                                    1. 外出详细原因：\\l__gdut_info_why\\\\                                    2. 离校后是否返校：\\l__gdut_info_back_school\\\\                                    3. 家长是否同意知情：\\l__gdut_info_informed_parents                                    }\\\\                                  &  申请人（签名）：\\makebox[13\\ccwd][r]{\\l__gdut_info_time} \\\\    {导\\\\ 师\\\\ 意\\\\ 见\\\\{\\small    \\normalfont（研究生必填）}}   & （导师是否明确对学生监管责任，并同意学生外出学校）\\\\                                  & 签名：\\hspace*{8\\ccwd}年　月　日 \\\\    {　\\\\ 辅\\\\ 导\\\\ 员\\\\    意\\\\ 见\\\\ 　}                 & \\\\                                  & 签名：\\hspace*{8\\ccwd}年　月　日 \\\\    {　\\\\ 学\\\\ 院\\\\ 意\\\\ 见\\\\ 　} & （需明确学院是否同意该生离校）\\\\                                  & 负责人签名（盖章）：\\hspace*{8\\ccwd}年　月　日 \\\\  \\end{tblr}}\\ExplSyntaxOff';
+  var endup = '\\begin{document}'+
+              '\\printgdut'+
+              '\\end{document}'+
+              '\\begin{document}'+
+              '\\printgdut'+
+              '\\end{document}';
+  var btn = document.getElementById('trigger');
+  btn.onclick = function() {
+    
+    for(var i=0;i<judge1.length;i++){
+      if(judge1[i].checked)
+      {
+        stuGender = judge1[i];
+      }
+    }
+
+    for(var i=0;i<judge2.length;i++){
+      if(judge2[i].checked)
+      {
+        stuBack = judge2[i];
+      }
+    }
+
+    for(var i=0;i<judge3.length;i++){
+      if(judge3[i].checked)
+      {
+        stuPar = judge3[i];
+      }
+    }
+    
+    editors["pre0"].setValue(all+'\\gdutsetup{'+'student-id = {'+ stuId.value +'},'+'name = {'+ stuName.value +'},'+'gender = {'+ stuGender.value +'},'+'major-grade = {'+ stuClass.value +'},'+'college = {'+ stuSchool.value +'},'+'supervisor = {'+ stuTeacher.value +'},'+'dormitory = {'+ stuRoom.value +'},'+'phone = {'+ stuTel.value +'},'+'period-of-time = {'+ stuOut.value +'},'+'time = {'+ stuDate.value +'},'+'why = {'+ stuReason.value +'},'+'address = {'+ stuDest.value +'},'+'trip-mode = {'+ stuWay.value +'},'+'back-school = {'+ stuBack.value +'},'+'informed-parents = {'+ stuPar.value +'},'+'}'+endup);
+    alert('点击左下方TeXLive.net输出pdf');
+  }
+</script>
+
+
+
+<div class="h" >
+
+  <pre id="pre0" hidden>
+  </pre>
+</div>
+
 </body>
+
